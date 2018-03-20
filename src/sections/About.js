@@ -60,7 +60,7 @@ class About extends React.Component{
 	        				</ul>
 	        			</div>
 	        			<div className="size1of1 floatL txtCenter">
-	        				<img src="img/Mobile-tablet.png" alt=""  className="res" />
+	        				{/*<img src="img/Mobile-tablet.png" alt=""  className="res" />*/}
 	        			</div>
 	        			<div className="bloc1 borRightNone">
 							<p className="title2">SOFTWARE &amp; APPLICATIONS</p>
