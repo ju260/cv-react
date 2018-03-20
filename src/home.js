@@ -1,6 +1,6 @@
 import React from 'react';
-import Sections from './Sections';
-import Navigation from '../nav';
+import Sections from './sections/Sections';
+import Navigation from './nav';
 
 class SiteContainer extends React.Component{
    constructor(props) {
@@ -29,4 +29,3 @@ class SiteContainer extends React.Component{
 };
 
 export default SiteContainer;
-// module.exports = SiteContainer;

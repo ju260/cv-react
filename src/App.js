@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'react';
-import SiteContainer from './sections';
+
+import SiteContainer from './home';
 
 class App extends Component {
   

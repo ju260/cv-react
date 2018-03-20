@@ -5,11 +5,7 @@ import Jobs from './Jobs';
 const React = require('react');
 
 class Sections extends React.Component{
-   constructor(props) {
-    super(props);
-    
-  }
-    render() {
+      render() {
         return (
             <div className={this.props.styleName}>
               <Intro />

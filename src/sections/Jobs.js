@@ -16,10 +16,6 @@ class Job extends React.Component{
 }
 
 class Jobs extends React.Component{
-	constructor(){
-		super();
-	}
-   
     render() {
 		this.Jobs = [
 			{
