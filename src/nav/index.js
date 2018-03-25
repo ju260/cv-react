@@ -24,7 +24,7 @@ render() {
                 <ul id='nav' className='menu'>
 					<li><a id="menu1" data-id="about" onClick={this.handleNavClick} href="javascript:void(0)">{this.texts.nav1}</a></li>
         			<li><a id="menu2" data-id="work" onClick={this.handleNavClick} href="javascript:void(0)">{this.texts.nav2}</a></li>
-        			<li><a href="mailto:julienlcpro@gmail.com" rel="noopener noreferrer" target="_blank">{this.texts.nav2}</a></li>
+        			<li><a href="mailto:julienlcpro@gmail.com" rel="noopener noreferrer" target="_blank">{this.texts.nav3}</a></li>
                 </ul>
             </nav>
         );

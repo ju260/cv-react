@@ -752,3 +752,15 @@ body {
     transform: translateY(-200vh);
     transition: 0.5s ease
 }
+
+#particles {
+    position: fixed;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    z-index: -1;
+    position: absolute;
+    left: 50%;
+    margin-left: -250px;
+    z-index: 1;
+}
