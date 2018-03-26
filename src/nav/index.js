@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+const React = require('react');
 
 class Navigation extends React.Component{
    constructor(props) {

@@ -2,12 +2,13 @@
 import Intro from './Intro';
 import About from './About';
 import Jobs from './Jobs';
+
 const React = require('react');
 
 class Sections extends React.Component{
       render() {
         return (
-            <div className={this.props.styleName}>
+            <div id="sections" className={this.props.styleName}>
               <Intro />
                 <About />
                 <Jobs />

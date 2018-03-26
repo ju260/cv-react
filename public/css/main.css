@@ -763,4 +763,6 @@ body {
     left: 50%;
     margin-left: -250px;
     z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Sections from './sections/Sections';
+import AnimationCanvas from './animation/';
 import Navigation from './nav';
 
 class SiteContainer extends React.Component{
@@ -21,6 +22,7 @@ class SiteContainer extends React.Component{
     render() {
         return (
           <div >
+            <AnimationCanvas/>
             <Navigation rel="noopener noreferrer" styleName={this.state.styleName} onNavClick={this.handleNavClick} />
             <Sections rel="noopener noreferrer" styleName={this.state.styleName} className={this.state.styleName}/>
           </div>
