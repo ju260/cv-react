@@ -12,7 +12,7 @@ class Intro extends React.Component{
 	        		<div className="intro">
 	        			<header><h1 className="visuallyhidden">julien le corre</h1></header>
 	        		</div>
-	        		<canvas id="viewport" width="500" height="500"></canvas>
+	        		
 	        	</div>
         		</div>
         	  </div>

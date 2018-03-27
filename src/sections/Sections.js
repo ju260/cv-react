@@ -3,6 +3,7 @@ import Intro from './Intro';
 import About from './About';
 import Jobs from './Jobs';
 
+
 const React = require('react');
 
 class Sections extends React.Component{

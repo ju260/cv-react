@@ -12,7 +12,7 @@ class SiteContainer extends React.Component{
   }
 
   handleNavClick(styleName) {
-    console.log(`handleNavClick ${styleName}`);
+   // console.log(`handleNavClick ${styleName}`);
   
     this.setState({
       styleName: styleName
@@ -22,7 +22,7 @@ class SiteContainer extends React.Component{
     render() {
         return (
           <div >
-            <AnimationCanvas/>
+            <AnimationCanvas transformCanvas={this.state.styleName} />
             <Navigation rel="noopener noreferrer" styleName={this.state.styleName} onNavClick={this.handleNavClick} />
             <Sections rel="noopener noreferrer" styleName={this.state.styleName} className={this.state.styleName}/>
           </div>

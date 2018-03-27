@@ -1,9 +1,7 @@
+const TimerMixin = require('react-timer-mixin');
 const React = require('react');
 
 class AnimationCanvas extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         this.initCanvas();
@@ -11,81 +9,97 @@ class AnimationCanvas extends React.Component {
         this.animloop();
     }
 
-    requestAnimFrame() {
-        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
-            window.setTimeout(callback, 1000 / 60);
-        };
-    };
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.transformCanvas === "about") {
+            this.transformCanvas("ABOUT");
+        } else if (nextProps.transformCanvas === "work") {
+            this.transformCanvas("WORK");
+        }
+    }
 
     initCanvas() {
 
-        var keyword = "ABOUT";
-        // var canvas = document.getElementById("particles");
         this.canvas = this.refs.particles;
         this.ctx = this
             .refs
             .particles
             .getContext('2d');
 
-        this.bgCanvas;
-        this.bgctx;
-
-        /*var W = window.innerWidth,
-    H = window.innerHeight;*/
-        this.W = 500,
-        this.H = 500;
+        this.W = window.innerWidth;
+        this.H = window.innerHeight;
         this.canvas.width = this.W;
         this.canvas.height = this.H;
 
-        //anim txt
+        this.particles = [];
+        this.minDist = 70;
+
+        this.nbParticlesVisbles = 400;
+
+        this.denseness = 3;
+        this.itercount = 0;
+        this.itertot = 20;
+        this.timer = 0;
+
+        this.initBgCanvas();
+        
+    }
+
+    transformCanvas(keyword) {
+        this.initBgCanvas(keyword);
+        this.timer = 1;
+        this.particles = [];
+        this.getCoords();
+        this.draw2();
+        TimerMixin.setTimeout(() => {
+            this.timer = 0;
+            this.particles = [];
+            this.getCoords();
+            this.draw();
+        }, 5000);
+    }
+
+    initBgCanvas(keyword = "test") {
+        this.keyword = keyword;
         this.bgCanvas = document.createElement('canvas');
-        this.bgctx = this.bgCanvas.getContext('2d');
+        this.bgctx = this
+            .bgCanvas
+            .getContext('2d');
 
         this.bgCanvas.width = window.innerWidth;
         this.bgCanvas.height = window.innerHeight;
 
         this.bgctx.fillStyle = "#fff";
         this.bgctx.font = '150px impact';
-        this.bgctx.fillText(keyword, 85, 275);
-
-        this.particles = [],
-        this.minDist = 70,
-        this.dist;
-
-        this.nbParticlesVisbles = 400;
-
-        this.denseness = 3;
-
-        this.itercount = 0;
-        this.itertot = 20;
-        this.timer = 0;
-
-       
+        this
+            .bgctx
+            .fillText(this.keyword, 85, window.innerHeight / 2);
 
     }
 
-     getCoords () {
-            var imageData,
-                pixel,
-                height,
-                width;
-                var tabCoordTarget = [];
+    getCoords() {
+        var imageData,
+            pixel,
+            height,
+            width;
+        var tabCoordTarget = [];
 
-            imageData = this.bgctx.getImageData(0, 0, this.canvas.width, this.canvas.height);
+        imageData = this
+            .bgctx
+            .getImageData(0, 0, this.canvas.width, this.canvas.height);
 
-            for (height = 0; height < this.bgCanvas.height; height += this.denseness) {
-                for (width = 0; width < this.bgCanvas.width; width += this.denseness) {
-                    pixel = imageData.data[((width + (height * this.bgCanvas.width)) * 4) - 1];
-                    //Pixel is black from being drawn on.
-                    if (pixel == 255) {
-                        tabCoordTarget.push({x: width, y: height});
-                        this
-                            .particles
-                            .push(new this.Particle(width, height));
-                    }
+        for (height = 0; height < this.bgCanvas.height; height += this.denseness) {
+            for (width = 0; width < this.bgCanvas.width; width += this.denseness) {
+                pixel = imageData.data[((width + (height * this.bgCanvas.width)) * 4) - 1];
+                //Pixel is black from being drawn on.
+                if (pixel === 255) {
+                    tabCoordTarget.push({x: width, y: height});
+                    this
+                        .particles
+                        .push(new this.Particle(width, height, this));
                 }
             }
         }
+    }
 
     paintCanvas() {
 
@@ -95,10 +109,12 @@ class AnimationCanvas extends React.Component {
             .fillRect(0, 0, this.W, this.H);
     }
 
-    Particle(goalX, goalY) {
+    Particle(goalX, goalY, referenceThis) {
 
-        this.x = Math.random() * this.W;
-        this.y = Math.random() * this.H;
+        let this2 = referenceThis;
+
+        this.x = Math.random() * this2.W;
+        this.y = Math.random() * this2.H;
 
         this.color = 1;
 
@@ -108,8 +124,8 @@ class AnimationCanvas extends React.Component {
         this.goalX = goalX;
         this.goalY = goalY;
 
-        var velx = (this.goalX - this.x) / this.itertot;
-        var vely = (this.goalY - this.y) / this.itertot;
+        var velx = (this.goalX - this.x) / this2.itertot;
+        var vely = (this.goalY - this.y) / this2.itertot;
 
         this.v = {
             x: velx,
@@ -120,27 +136,20 @@ class AnimationCanvas extends React.Component {
 
         this.radius = Math.random() * 2;
 
-        this.draw = function () {
-            this.ctx.fillStyle = "black";
-            this
+        this.draw = () => {
+            this2.ctx.fillStyle = "#000000";
+            this2
                 .ctx
                 .beginPath();
-            this
+            this2
                 .ctx
                 .arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
 
-            this
+            this2
                 .ctx
                 .fill();
         }
     }
-
-    /*document.getElementById('btParticles').addEventListener("click", () => {
-    timer = 1;
-    particles = [];
-    getCoords();
-    draw2();
-})*/
 
     draw2() {
 
@@ -165,18 +174,18 @@ class AnimationCanvas extends React.Component {
         this.update();
     }
 
-    updateTxt = () => {
+    updateTxt() {
         this.itercount++;
 
         for (var i = 0; i < this.particles.length; i++) {
             var p = this.particles[i];
 
-            if (p.r == true) {
+            if (p.r === true) {
                 p.x += p.v.x;
                 p.y += p.v.y
             }
 
-            if (this.itercount == this.itertot) {
+            if (this.itercount === this.itertot) {
                 p.v = {
                     x: (Math.random() * 6) * 2 - 6,
                     y: (Math.random() * 6) * 2 - 6
@@ -227,10 +236,14 @@ else if (p.y - p.radius < 0) {
             this
                 .ctx
                 .beginPath();
-            this.ctx.strokeStyle = "rgba(0,0,0," + (1.2 - this.dist / this.minDist) + ")";
+            this.ctx.strokeStyle = "rgba(100,100,100," + (1.2 - this.dist / this.minDist) + ")";
+            this.ctx.lineWidth = 0.1;
             this
                 .ctx
                 .moveTo(p1.x, p1.y);
+            this
+                .ctx
+                .lineTo(p2.x, p2.y);
             this
                 .ctx
                 .stroke();
@@ -241,17 +254,26 @@ else if (p.y - p.radius < 0) {
     }
 
     animloop() {
+
         if (this.timer === 0) {
             this.draw();
         } else {
             this.draw2()
         }
-        this.requestAnimFrame(this.animloop);
+
+        TimerMixin.requestAnimationFrame(() => {
+            this.animloop();
+        });
     }
 
     render() {
         return (
-            <canvas ref="particles" id="particles" width="500" height="500"></canvas>
+            <canvas
+                data-transformcanvas={this.props.transformCanvas}
+                ref="particles"
+                id="particles"
+                width="500"
+                height="500"></canvas>
         );
     }
 };

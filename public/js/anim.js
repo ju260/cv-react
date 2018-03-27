@@ -225,7 +225,7 @@ var target = document.getElementById('sections');
 // create an observer instance
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
-        console.log(mutation.type);
+        //    console.log(mutation.type);
     });
 });
 
