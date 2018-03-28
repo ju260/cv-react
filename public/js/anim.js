@@ -138,6 +138,25 @@ function draw() {
     update();
 }
 
+var returnTxt = function() {
+    itercount++;
+
+    for (var i = 0; i < particles.length; i++) {
+        p = particles[i];
+
+        if (p.r == true) {
+            p.x -= p.v.x;
+            p.y -= p.v.y
+        }
+
+        if (itercount == itertot) {
+            p.v = { x: (Math.random() * 6) * 2 - 6, y: (Math.random() * 6) * 2 - 6 };
+            p.r = false;
+        }
+
+    }
+}
+
 
 var updateTxt = function() {
     itercount++;

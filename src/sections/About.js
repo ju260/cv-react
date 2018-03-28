@@ -47,7 +47,7 @@ class About extends React.Component{
 	        			<div className="size1of1 floatL"><span className="visu2">&nbsp;</span></div>
 	        		</div>	
 	        		<div className="line line5">
-	        			<div className="bloc1 size1of4">
+	        			<div className="bloc1">
 	        				<h2>javascript</h2>
 	        				<ul>
 								<li>ES6</li>

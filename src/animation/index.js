@@ -41,20 +41,20 @@ class AnimationCanvas extends React.Component {
         this.timer = 0;
 
         this.initBgCanvas();
-        
+
     }
 
     transformCanvas(keyword) {
+        this.itercount = 0;
         this.initBgCanvas(keyword);
         this.timer = 1;
         this.particles = [];
         this.getCoords();
         this.draw2();
-        TimerMixin.setTimeout(() => {
-            this.timer = 0;
-            this.particles = [];
-            this.getCoords();
-            this.draw();
+        TimerMixin.setTimeout(() => { //deconstitution du texte
+            this.timer = 2;
+            this.itercount = 0;
+            this.returnDraw();
         }, 5000);
     }
 
@@ -174,6 +174,62 @@ class AnimationCanvas extends React.Component {
         this.update();
     }
 
+    returnDraw() {
+        this.paintCanvas();
+
+        for (var i = 0; i < this.nbParticlesVisbles; i++) {
+            var p = this.particles[i];
+            p.draw();
+        }
+        this.updateReturnTxt();
+    }
+
+    updateReturnTxt() {
+        this.itercount++;
+
+        for (var i = 0; i < this.particles.length; i++) {
+            var p = this.particles[i];
+
+            if (p.r === false) {
+                p.x -= p.v.x;
+                p.y -= p.v.y
+            }
+
+            if (p.x + p.radius > this.W) {
+                p.x = p.radius;
+            } else if (p.x - p.radius < 0) {
+                p.x = this.W - p.radius;
+            }
+
+            if (p.y + p.radius > this.H) {
+                p.y = p.radius;
+            } else if (p.y - p.radius < 0) {
+                p.y = this.H - p.radius;
+            }
+
+            if (this.itercount > 40) {
+                for (var j = i + 1; j < this.nbParticlesVisbles; j++) {
+                    var p2 = this.particles[j];
+                    this.distance(p, p2);
+                }
+            }
+
+            /*if (this.itercount === 150) {
+                this.timer = 0;
+                this.animloop();
+            }*/
+
+            /* if (this.itercount === this.itertot) {
+                p.v = {
+                    x: (Math.random() * 6) * 2 - 6,
+                    y: (Math.random() * 6) * 2 - 6
+                };
+                p.r = true;
+            }*/
+
+        }
+    }
+
     updateTxt() {
         this.itercount++;
 
@@ -204,17 +260,15 @@ class AnimationCanvas extends React.Component {
             p.x += p.vx;
             p.y += p.vy
 
-            if (p.x + p.radius > this.W) 
+            if (p.x + p.radius > this.W) {
                 p.x = p.radius;
-            
-else if (p.x - p.radius < 0) {
+            } else if (p.x - p.radius < 0) {
                 p.x = this.W - p.radius;
             }
 
-            if (p.y + p.radius > this.H) 
+            if (p.y + p.radius > this.H) {
                 p.y = p.radius;
-            
-else if (p.y - p.radius < 0) {
+            } else if (p.y - p.radius < 0) {
                 p.y = this.H - p.radius;
             }
 
@@ -257,8 +311,10 @@ else if (p.y - p.radius < 0) {
 
         if (this.timer === 0) {
             this.draw();
-        } else {
+        } else if (this.timer === 1) {
             this.draw2()
+        } else if (this.timer === 2) {
+            this.returnDraw()
         }
 
         TimerMixin.requestAnimationFrame(() => {

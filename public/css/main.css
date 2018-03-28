@@ -218,12 +218,13 @@ body {
 .intro {
     z-index: 2;
     position: absolute;
-    top: 60px;
+    top: 50%;
     left: 50%;
     width: 255px;
     height: 342px;
     background: url(../img/intro.png) no-repeat 0 0;
-    margin-left: -122px
+    /* margin: -170px 0 0 -281px; */
+    transform: translate(-50%, -50%);
 }
 
 .bloc1 {
@@ -301,12 +302,12 @@ body {
 }
 
 .blocIntro {
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
     height: 342px;
     margin: -221px 0 0 -120px;
-    width: 255px
+    width: 255px*/
 }
 
 #sect1 .wrapper {
@@ -362,12 +363,13 @@ body {
     width: 343px;
 }
 
-.margL1 {
-    margin-left: 171px
-}
-
-.margL2 {
-    margin-left: 342px
+@media screen and (min-width:1024px) {
+    .margL1 {
+        margin-left: 171px
+    }
+    .margL2 {
+        margin-left: 342px
+    }
 }
 
 .floatL {
@@ -744,6 +746,7 @@ body {
 .wrapper--fullH {
     height: 100vh;
     overflow: auto;
+    position: relative;
 }
 
 .about {
