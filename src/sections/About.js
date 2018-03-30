@@ -20,8 +20,8 @@ class About extends React.Component{
         	  <div className="content">
         		<div className="wrapper">
         			<div className="logoAbout"><span className="visuallyhidden">à propos</span></div>
-        			<div className="line margL2">
-	        			<div className="bloc1 size3of1">
+        			<div className="line line1 margL2">
+	        			<div className="bloc1 size3of1  flex flex--column-mobile">
 	        				<div className="size1of1 floatL"><h2 className="title1 txtCenter">{this.texts.aboutFirstName}<br/>{this.texts.aboutName}</h2></div>
 	        				<div className="">
 	        					<p className="title2">{this.texts.aboutTitle}</p>
@@ -29,16 +29,16 @@ class About extends React.Component{
 	        				</div>	
 	        			</div>
         			</div>
-        			<div className="line margL1 line2">
+        			<div className="line margL1 line2 flex">
 	        			<div className="bloc1"><div className="title1 txtCenter"><font className="lightFont ft4" >10</font><br/><font className="lightMed ft5" >YEARS</font><br/><font className="lightMed ft6" >EXPERIENCE</font></div>{/*<div className=" txtCenter"><font className="lightFont ft1" >36</font><br/><font className="lightMed ft2" >YEARS</font><br/><font className="lightMed ft3" >OLD</font></div>*/}</div>
-	        			<div className="size1of1 floatL txtCenter bloc1"><img src="img/visu1.png" alt=""  className="" /><span className="visuallyhidden">french flair</span></div>
+	        			<div className="size1of1 floatL txtCenter bloc1 blocBox1"><img src="img/visu1.png" alt=""  className="" /><span className="visuallyhidden">french flair</span></div>
 	        			{/*<div className="bloc1"><div className="title1 txtCenter"><font className="lightFont ft4" >10</font><br/><font className="lightMed ft5" >YEARS</font><br/><font className="lightMed ft6" >EXPERIENCE</font></div></div>*/}
         			</div>
-        			<div className="line margL2 line3">
+        			<div className="line margL2 line3 flex">
         				<div className="bloc1 borRightNone"><img className="res" src="img/logo-html5.png" alt="logo html5" /><span className="visuallyhidden">HTML5</span></div>
         				<div className="size1of1 floatL"><span className="visu1">&nbsp;</span></div>
         			</div>
-        			<div className="line line4">
+        			<div className="line line4 noMobile">
 	        			{/*<div className="bloc1 size2of1">
 	        				<p className="title2">HIGHT LEVELS OF KNOWLEDGE WITH</p>
 	        				<p className="txt1">i'm a passionnate web developer specialized in front end development (xhtml/css and javascript), i respect semantics markups with W3C standarts, cross browsers developments and Unobtrusive Javascript.</p>
@@ -46,11 +46,13 @@ class About extends React.Component{
 	        			<div className="size1of1 floatL borRightNone"></div>
 	        			<div className="size1of1 floatL"><span className="visu2">&nbsp;</span></div>
 	        		</div>	
-	        		<div className="line line5">
-	        			<div className="bloc1">
+	        		<div className="line line5 flex flex--type1">
+	        			<div className="bloc1 bloc1--size1">
 	        				<h2>javascript</h2>
-	        				<ul>
+	        				<ul class="competences">
 								<li>ES6</li>
+								<li>REACTJS</li>
+								<li>VUEJS</li>
 								<li>JOO</li>
 								<li>Gulp, Grunt, Webpack</li>
 	        					<li>SVG</li>
@@ -59,19 +61,19 @@ class About extends React.Component{
 	        					<li>Jquery</li>
 	        				</ul>
 	        			</div>
-	        			<div className="size1of1 floatL txtCenter">
+	        			<div className="size1of1 floatL txtCenter noMobile">
 	        				{/*<img src="img/Mobile-tablet.png" alt=""  className="res" />*/}
 	        			</div>
 	        			<div className="bloc1 borRightNone">
 							<p className="title2">SOFTWARE &amp; APPLICATIONS</p>
-	        				<p className="txt1">Visual Studio, photoshop, illustrator...</p>
+	        				<p className="txt1">Visual Studio, GIT, photoshop, illustrator...</p>
 	        				{/*<ul>
 	        					<li>CSS2/3</li>
 	        					<li>W3C</li>
 	        				</ul>*/}
 	        			</div>
-	        			<div className="bloc1 flex">
-							<a href="#" className="word fCenter"><span className="ft7 txtCenter">DOWN<span className="ft8">LOAD</span></span></a>
+	        			<div className="bloc1 flex flex--fullWMobile">
+							<a href="https://docs.google.com/document/d/1e7oz_O1l3sD9cCAyX49GnDGtcuYxBcYjbEj74tSwJfs/edit" target="_blank" className="word fCenter"><span className="ft7 txtCenter">DOWN<span className="ft8">LOAD</span></span></a>
 	        				{/*<ul>
 	        					<li>DOM</li>
 	        					<li>XML</li>
@@ -79,15 +81,15 @@ class About extends React.Component{
 	        				</ul>*/}
 	        			</div>
         			</div>
-        			<div className="line line6">
+        			<div className="line line6 noDesktop">
 	        			{/*<div className="size1of1 floatL txtCenter bloc3">
 	        				Emailing template
-	        			</div>*/}
-	        			{/*<div className="bloc1 borRightNone">
+	        			</div>
+	        			<div className="bloc1 borRightNone">
 	        				<p className="title2">SOFTWARE &amp; APPLICATIONS</p>
 	        				<p className="txt1">Visual Studio, photoshop, illustrator...</p>
-	        			</div>*/}
-	        			{/*<div className="bloc1">
+	        			</div>
+	        			<div className="bloc1">
 	        				<a href="" className="word">télécharger mon cv au format word</a>
 	        			</div>*/}
         			</div>
